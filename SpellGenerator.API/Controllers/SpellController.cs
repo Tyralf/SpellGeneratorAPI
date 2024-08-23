@@ -25,7 +25,7 @@ namespace SpellGeneratorAPI.Controllers
         [HttpGet("GetZbaam")]
         public string GetZbaam()
         {
-            return "Zbaam <3 on git now";
+            return "Zbaam <3 on git now, branch dev";
         }
 
         // Route: /Spell/AddNumbers (HTTP POST)
