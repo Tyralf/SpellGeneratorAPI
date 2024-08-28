@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SpellGenerator.API.Requests;
+using SpellGenerator.Business.BusinessModels;
+using SpellGenerator.Business.BusinessModels.Converters;
+using SpellGenerator.Business.BusinessModels.Converters.Interfaces;
+using SpellGenerator.Data.Repositories;
 
 namespace SpellGeneratorAPI.Controllers
 {
@@ -8,17 +12,22 @@ namespace SpellGeneratorAPI.Controllers
     public class SpellController : ControllerBase
     {
         private readonly ILogger<SpellController> _logger;
+        private readonly SpellRepository _spellRepository;
+        IConverter<SpellGenerator.Data.DataModels.Spell, Spell> _spellConverter;
 
-        public SpellController(ILogger<SpellController> logger)
+        public SpellController(ILogger<SpellController> logger, SpellRepository spellRepository, SpellConverter spellConverter)
         {
             _logger = logger;
+            _spellRepository = spellRepository;
+            _spellConverter = spellConverter;
         }
 
         // Route: /Spell/GetSpellTest
         [HttpGet("GetSpellTest")]
-        public string GetSpellTest()
+        public IActionResult GetSpellTest()
         {
-            return "SpellTest";
+            var result = _spellConverter.ConvertDataToBusiness(_spellRepository.FakeGetSpell());
+            return Ok(result);
         }
 
         // Route: /Spell/GetZbaam

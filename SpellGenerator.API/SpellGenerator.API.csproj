@@ -10,4 +10,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SpellGenerator.Business\SpellGenerator.Business.csproj" />
+    <ProjectReference Include="..\SpellGenerator.Data\SpellGenerator.Data.csproj" />
+  </ItemGroup>
+
 </Project>

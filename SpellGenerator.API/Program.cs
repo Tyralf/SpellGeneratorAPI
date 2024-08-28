@@ -1,8 +1,13 @@
+using SpellGenerator.Business.BusinessModels.Converters;
+using SpellGenerator.Data.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<SpellRepository>();
+builder.Services.AddScoped<SpellConverter>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

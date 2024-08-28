@@ -9,13 +9,13 @@ namespace SpellGenerator.Business.BusinessModels.AddOnDecorators
 {
     public class RangeModifierDecorator : InstabilityModifierDecorator
     {
-        public int RangeModification { get; set; }
+        public string RangeModification { get; set; }
         public RangeModifierDecorator(IAddOn addOn) : base(addOn) { }
 
         public override void Apply(Spell spell)
         {
             spell.TotalInstability += this.InstabilityModification;
-            spell.Range += this.RangeModification;
+            spell.Range = this.RangeModification;
         }
     }
 }
