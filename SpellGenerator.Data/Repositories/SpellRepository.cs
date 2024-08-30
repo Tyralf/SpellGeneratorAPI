@@ -64,10 +64,6 @@ namespace SpellGenerator.Data.Repositories
                 ModifierValue = "Range is now 25m"
             };
 
-
-
-
-
             Spell fakeSpell = new Spell();
             fakeSpell.Id = -1;
             fakeSpell.Name = "The FakeSpell";
