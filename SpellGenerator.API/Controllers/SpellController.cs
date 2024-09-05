@@ -41,13 +41,27 @@ namespace SpellGeneratorAPI.Controllers
         [HttpPost("AddNumbers")]
         public IActionResult AddNumbers([FromBody] AdditionRequest request)
         {
-            if (request == null || !ModelState.IsValid)
+            if (request == null || request.Number1 == 0 || request.Number2 == 0)
             {
-                return BadRequest("Invalid input");
+                return BadRequest("Les nombres ne doivent pas être null ou zéro.");
             }
 
             var result = request.Number1 + request.Number2;
             return Ok(new { Sum = result });
+        }
+
+        [HttpGet("Error500")]
+        public IActionResult GenerateError500()
+        {
+            // Génère une exception volontairement pour tester le middleware
+            throw new Exception("Ceci est une erreur de test de type server ! Normalement Code 500 !");
+        }
+
+        [HttpGet("Error404")]
+        public IActionResult GenerateError()
+        {
+            // Génère une exception volontairement pour tester le middleware
+            throw new KeyNotFoundException();
         }
     }
 }

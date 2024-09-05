@@ -11,8 +11,9 @@ namespace SpellGenerator.Business.BusinessModels.AddOnDecorators
     {
         public int InstabilityModification { get; set; }
         public int Priority { get; set; }
+        public bool isCumulative { get; set; }
 
-        private readonly IAddOn _AddOn;
+        public readonly IAddOn _AddOn;
 
         public InstabilityModifierDecorator(IAddOn addOn)
         {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SpellGenerator.Business.BusinessModels.Converters
 {
-    internal class AddOnConverter : IConverter<Data.DataModels.AddOn, IAddOn>
+    public class AddOnConverter : IConverter<Data.DataModels.AddOn, IAddOn>
     {
         public Data.DataModels.AddOn ConvertBusinessToData(IAddOn businessAddOn)
         {
@@ -25,21 +25,50 @@ namespace SpellGenerator.Business.BusinessModels.Converters
                 Name = dataAddOn.Name,
                 Description = dataAddOn.Description
             };
-            if (dataAddOn.Type == AddOnTypeEnum.InstabilityOnly)
+
+            switch(dataAddOn.Type)
             {
-                businessAddOn = new InstabilityModifierDecorator(businessAddOn)
-                {
-                    InstabilityModification = dataAddOn.InstabilityValue
-                };
+                case AddOnTypeEnum.InstabilityOnly:
+                    businessAddOn = new InstabilityModifierDecorator(businessAddOn)
+                    {
+                        InstabilityModification = dataAddOn.InstabilityValue
+                    };
+                    break;
+
+                case AddOnTypeEnum.Range:
+                    businessAddOn = new RangeModifierDecorator(businessAddOn)
+                    {
+                        InstabilityModification = dataAddOn.InstabilityValue,
+                        RangeModification = dataAddOn.ModifierValue
+                    };
+                    break;
+
+                case AddOnTypeEnum.Cast:
+                    businessAddOn = new CastModifierDecorator(businessAddOn)
+                    {
+                        InstabilityModification = dataAddOn.InstabilityValue,
+                        CastModification = dataAddOn.ModifierValue
+                    };
+                    break;
+
+                case AddOnTypeEnum.Target:
+                    businessAddOn = new TargetModifierDecorator(businessAddOn)
+                    {
+                        InstabilityModification = dataAddOn.InstabilityValue,
+                        TargetModification = dataAddOn.ModifierValue
+                    };
+                    break;
+
+                case AddOnTypeEnum.Duration:
+                    businessAddOn = new DurationModifierDecorator(businessAddOn)
+                    {
+                        InstabilityModification = dataAddOn.InstabilityValue,
+                        DurationModification = dataAddOn.ModifierValue
+                    };
+                    break;
+
             }
-            else if (dataAddOn.Type == AddOnTypeEnum.Range)
-            {
-                businessAddOn = new RangeModifierDecorator(businessAddOn)
-                {
-                    InstabilityModification = dataAddOn.InstabilityValue,
-                    RangeModification = dataAddOn.ModifierValue
-                };
-            }
+
             return businessAddOn;
         }
     }

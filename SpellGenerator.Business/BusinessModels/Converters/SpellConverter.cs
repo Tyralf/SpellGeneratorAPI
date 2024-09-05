@@ -1,4 +1,6 @@
-﻿using SpellGenerator.Business.BusinessModels.Converters.Interfaces;
+﻿using Microsoft.Extensions.Options;
+using SpellGenerator.Business.BusinessModels.Converters.Helpers;
+using SpellGenerator.Business.BusinessModels.Converters.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +26,12 @@ namespace SpellGenerator.Business.BusinessModels.Converters
             businessSpell.ManaCost = dataSpell.ManaCost;
             businessSpell.Description = dataSpell.Description;
             businessSpell.AddOns = new List<Business.Interfaces.IAddOn>();
-            foreach(var dataAddOn in dataSpell.AddOns)
+            if(dataSpell.AddOns != null)
             {
-                businessSpell.AddOns.Add(_addOnConverter.ConvertDataToBusiness(dataAddOn));
+                foreach (var dataAddOn in dataSpell.AddOns)
+                {
+                    businessSpell.AddOns.Add(_addOnConverter.ConvertDataToBusiness(dataAddOn));
+                }
             }
             foreach(var buisnessAddOn in businessSpell.AddOns)
             {
@@ -38,14 +43,12 @@ namespace SpellGenerator.Business.BusinessModels.Converters
 
         private Spell SetInitialValuesForBuisnessSpell(Spell businessSpell)
         {
-            businessSpell.numericalLevel = 0;
-            businessSpell.Range = "Soi-meme / Corps à Corps";
-            businessSpell.CastTime = "2 PA";
-            businessSpell.Duration = "1 tour";
-            businessSpell.Target = "Une seule";
-            businessSpell.TotalInstability = 0;
-            
-
+            businessSpell.numericalLevel = SpellDefaults.DefaultNumericalLevel;
+            businessSpell.Range = SpellDefaults.DefaultRange;
+            businessSpell.CastTime = SpellDefaults.DefaultCastTime;
+            businessSpell.Duration = SpellDefaults.DefaultDuration;
+            businessSpell.Target = SpellDefaults.DefaultTarget;
+            businessSpell.TotalInstability = SpellDefaults.DefaultTotalInstability;
 
             return businessSpell;
 
