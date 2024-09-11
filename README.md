@@ -43,11 +43,11 @@ API Spell est un système innovant destiné aux Maîtres de Jeu (MJs) et aux jou
 
 1. Clonez le dépôt :
     ```bash
-    git clone https://github.com/username/repository.git
+    git clone https://github.com/Tyralf/SpellGeneratorAPI.git
     ```
 2. Installez les dépendances :
     ```bash
-    cd repository
+    cd [votre repository local]
     dotnet restore
     ```
 3. Configurez les variables d'environnement (voir `appsettings.json` pour plus de détails).
