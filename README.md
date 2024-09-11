@@ -1,21 +1,24 @@
-# API Spell
+# API Spell [Work In Progress]
+
+### Pourcentage approximatif d'avancement du projet :
+![2024-09-11_10h36_54](https://github.com/user-attachments/assets/f3f28e98-480c-4986-b2a8-a5e12fe23ad6)
 
 ## Résumé du Projet
 
-API Spell est un système innovant destiné aux Maîtres de Jeu (MJs) et joueurs de jeux de rôle sur table, permettant la génération et la gestion de sorts personnalisés. Grâce à l'intégration d'OpenAI, cette API facilite la création de sorts uniques et la gestion d'une banque de sorts personnelle.
+API Spell est un système innovant destiné aux Maîtres de Jeu (MJs) et aux joueurs de jeux de rôle sur table, permettant la génération et la gestion de sorts personnalisés. Grâce à l'intégration d'OpenAI, cette API facilite la création de sorts uniques et la gestion d'une banque de sorts personnelle.
 
 ## Objectifs
 
-- **Génération de Sorts** : Créez des sorts uniques en utilisant l'IA.
-- **Système d'AddOns** : Personnalisez et améliorez les sorts avec des modificateurs.
-- **Gestion des Comptes Utilisateurs** : Gérez les comptes et les sorts personnels. Offrir aux joueurs un acces à leur grimoire.
+- **Création de Sorts** : Créez des sorts pour le jeu de rôle **Atlantea** (création personnelle).
+- **Génération de Sorts** : Générez des sorts via un LLM (OpenAI, Mistral, etc.).
+- **Gestion des Comptes Utilisateurs** : Gérez les comptes et les sorts personnels. Offrez aux joueurs un accès à leur grimoire.
 - **Banque de Sorts** : Stockez et organisez les sorts créés.
 
 ## Fonctionnalités
 
-- **Création et modification de Sorts** : Endpoints pour définir les paramètres des sorts. Ou les modifier.
-- **Équilibrage** : Assurez-vous que les sorts sont équilibrés pour le jeu.
-- **Gestion des Interactions** : Gérez les interactions entre différents AddOns.
+- **Création et Modification de Sorts** : Endpoints pour définir les paramètres des sorts ou les modifier.
+- **Équilibrage** : S'assurer que les sorts sont équilibrés pour le jeu.
+- **Gestion des Interactions** : Gérez différents utilisateurs de l'API, les MJs et les joueurs.
 
 ## Architecture Technique
 
@@ -29,7 +32,7 @@ API Spell est un système innovant destiné aux Maîtres de Jeu (MJs) et joueurs
 - **Utilisateurs** : Informations de compte, préférences, rôles (MJ/Joueur).
 - **Sorts** : Nom, description, coût en mana, effets de base.
 - **AddOns** : Modificateurs pour personnaliser les sorts.
-- **Banque de Sorts** : Collection de sorts associée à chaque utilisateur.
+- **Grimoire** : Collection de sorts associée à chaque utilisateur.
 
 ## Aspects Techniques
 
@@ -56,10 +59,4 @@ API Spell est un système innovant destiné aux Maîtres de Jeu (MJs) et joueurs
 
 ## Utilisation
 
-**Pour le moment l'application n'est pas encore en ligne. Vous pouvez cloner le projet et le lancer pour tester l'application avec swagger.** 
-
-## Documentation
-
-Pour plus de détails sur les API et les endpoints, veuillez consulter [à implemeter].
-
-
+**Pour le moment, l'application n'est pas encore en ligne. Vous pouvez cloner le projet et le lancer pour tester l'application avec Swagger.**
