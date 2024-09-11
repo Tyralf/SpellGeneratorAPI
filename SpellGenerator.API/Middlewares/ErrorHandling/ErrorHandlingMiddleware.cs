@@ -20,7 +20,8 @@ namespace SpellGenerator.API.Middlewares.ErrorHandling
             _strategies = new Dictionary<Type, IErrorHandlingStrategy>
             {
                 { typeof(Exception), new InternalServerErrorStrategy() },
-                { typeof(KeyNotFoundException), new NotFoundErrorStrategy() }
+                { typeof(KeyNotFoundException), new NotFoundErrorStrategy() },
+                { typeof(NullReferenceException), new InternalServerErrorStrategy() }
             };
         }
 

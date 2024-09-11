@@ -1,4 +1,7 @@
 ﻿using System;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
 
 namespace SpellGenerator.API.Strategies.ErrorHandling
 {
@@ -8,10 +11,13 @@ namespace SpellGenerator.API.Strategies.ErrorHandling
         {
             var code = 500;
 
+            // Simplification du formatage de la stack trace
+            var formattedStackTrace = env.IsDevelopment() ? exception.StackTrace : null;
+
             var result = new
             {
-                error = env.IsDevelopment() ? exception.Message : "Le serveur a rencontré une erreur",
-                stackTrace = env.IsDevelopment() ? exception.StackTrace : null
+                error = env.IsDevelopment() ? exception.Message : "Le serveur a rencontré une erreur.",
+                stackTrace = formattedStackTrace
             };
 
             context.Response.ContentType = "application/json";

@@ -11,6 +11,10 @@ namespace SpellGenerator.Business.Interfaces
     [JsonObject]
     public interface IAddOn
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+
         public void Apply(Spell spell);
     }
 }

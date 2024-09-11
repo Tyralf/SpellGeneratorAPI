@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpellGenerator.Business.BusinessModels.AddOnDecorators
 {
-    internal class DurationModifierDecorator : InstabilityModifierDecorator
+    public class DurationModifierDecorator : InstabilityModifierDecorator
     {
         public string DurationModification { get; set; }
         public DurationModifierDecorator(IAddOn addOn) : base(addOn) { }
