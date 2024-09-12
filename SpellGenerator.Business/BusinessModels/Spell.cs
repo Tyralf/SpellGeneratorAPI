@@ -1,4 +1,5 @@
-﻿using SpellGenerator.Business.Interfaces;
+﻿using SpellGenerator.Business.BusinessModels.AddOns;
+using SpellGenerator.Business.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

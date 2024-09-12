@@ -212,9 +212,9 @@ namespace SpellGenerator.Test.Converters
             var result = _spellConverter.ConvertDataToBusiness(nullSpell);
 
             Assert.True(result.Id == 0, $"Erreur: La valeur de Id n'est pas 0. Valeur pour Id : [{result.Id}]");
-            Assert.True(result.Name == null, $"Erreur: La valeur de name n'est pas null. Valeur pour name : [{result.Name}] (Si rien n'est affiché entre les crochets, c'est peut-être une chaine vide)");
+            Assert.True(result.Name == string.Empty, $"Erreur: La valeur de name n'est pas une chaine vide. Valeur pour name : [{result.Name}]");
             Assert.True(result.ManaCost == 0, $"Erreur: La valeur de ManaCost n'est pas 0. Valeur pour ManaCost : [{result.ManaCost}]");
-            Assert.True(result.Description == null, $"Erreur: La valeur de Description n'est pas null. Valeur pour Description : [{result.Description}] (Si rien n'est affiché entre les crochets, c'est peut-être une chaine vide)");
+            Assert.True(result.Description == string.Empty, $"Erreur: La valeur de Description n'est pas une chaine vide. Valeur pour Description : [{result.Description}]");
             Assert.True(result.AddOns != null, $"Erreur: La liste d'AddOns n'a pas éte generé pour l'objet buisness.");
 
             //Test de l'ajout des valeurs de initiales meme si le spell est null
@@ -231,11 +231,11 @@ namespace SpellGenerator.Test.Converters
         [Fact]
         public void TestConvertDataToBusiness_NullAddOnConversion()
         {
-            dataSpell.AddOns.Add(new Data.DataModels.AddOn());
+            dataSpell.AddOns.Add(new AddOn());
 
-            dataSpell.AddOns.Add(new Data.DataModels.AddOn());
+            dataSpell.AddOns.Add(new AddOn());
 
-            dataSpell.AddOns.Add(new Data.DataModels.AddOn());
+            dataSpell.AddOns.Add(new AddOn());
 
             var result = _spellConverter.ConvertDataToBusiness(dataSpell);
 
