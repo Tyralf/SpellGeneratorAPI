@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
+using SpellGenerator.Business.BusinessModels.AddOns;
 using SpellGenerator.Business.BusinessModels.Converters.Helpers;
 using SpellGenerator.Business.BusinessModels.Converters.Interfaces;
+using SpellGenerator.Business.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +27,7 @@ namespace SpellGenerator.Business.BusinessModels.Converters
             businessSpell.Id = dataSpell.Id;
             businessSpell.ManaCost = dataSpell.ManaCost;
             businessSpell.Description = dataSpell.Description;
-            businessSpell.AddOns = new List<Business.Interfaces.IAddOn>();
+            businessSpell.AddOns = new List<IAddOn>();
             if(dataSpell.AddOns != null)
             {
                 foreach (var dataAddOn in dataSpell.AddOns)

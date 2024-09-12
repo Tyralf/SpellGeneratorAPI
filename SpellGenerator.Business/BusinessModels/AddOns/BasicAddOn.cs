@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using SpellGenerator.Business.Interfaces;
 
-namespace SpellGenerator.Business.BusinessModels
+namespace SpellGenerator.Business.BusinessModels.AddOns
 {
-    public class AddOn : IAddOn
+    public class BasicAddOn : IAddOn
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public void Apply(Spell spell) { }
+        public virtual void Apply(Spell spell) { }
     }
 }

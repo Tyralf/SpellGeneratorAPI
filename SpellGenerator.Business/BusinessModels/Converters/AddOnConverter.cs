@@ -1,4 +1,4 @@
-﻿using SpellGenerator.Business.BusinessModels.AddOnDecorators;
+﻿using SpellGenerator.Business.BusinessModels.AddOns;
 using SpellGenerator.Business.BusinessModels.Converters.Interfaces;
 using SpellGenerator.Business.Interfaces;
 using SpellGenerator.Data.DataModels.Enums;
@@ -19,51 +19,65 @@ namespace SpellGenerator.Business.BusinessModels.Converters
 
         public IAddOn ConvertDataToBusiness(Data.DataModels.AddOn dataAddOn)
         {
-            IAddOn businessAddOn = new AddOn()
-            {
-                Id = dataAddOn.Id,
-                Name = dataAddOn.Name,
-                Description = dataAddOn.Description
-            };
+            BasicAddOn businessAddOn;
 
             switch(dataAddOn.Type)
             {
                 case AddOnTypeEnum.InstabilityOnly:
-                    businessAddOn = new InstabilityModifierDecorator(businessAddOn)
+                    InstabilityModifierAddOn instabilityAddOn = new InstabilityModifierAddOn()
                     {
-                        InstabilityModification = dataAddOn.InstabilityValue
+                        Id = dataAddOn.Id,
+                        Name = dataAddOn.Name,
+                        Description = dataAddOn.Description,
+                        InstabilityModificationValue = dataAddOn.InstabilityValue
                     };
-                    break;
+
+                    return instabilityAddOn;
 
                 case AddOnTypeEnum.Range:
-                    businessAddOn = new RangeModifierDecorator(businessAddOn)
+                    RangeModifierAddOn rangeAddOn = new RangeModifierAddOn()
                     {
-                        InstabilityModification = dataAddOn.InstabilityValue,
-                        RangeModification = dataAddOn.ModifierValue
+                        Id = dataAddOn.Id,
+                        Name = dataAddOn.Name,
+                        Description = dataAddOn.Description,
+                        InstabilityModificationValue = dataAddOn.InstabilityValue,
+                        RangeModificationValue = dataAddOn.ModifierValue
                     };
-                    break;
+                    return rangeAddOn;
 
-                case AddOnTypeEnum.Cast:
-                    businessAddOn = new CastModifierDecorator(businessAddOn)
+                /*case AddOnTypeEnum.Cast:
+                    IAddOn businessAddOn = new BasicAddOn()
                     {
-                        InstabilityModification = dataAddOn.InstabilityValue,
-                        CastModification = dataAddOn.ModifierValue
+                        Id = dataAddOn.Id,
+                        Name = dataAddOn.Name,
+                        Description = dataAddOn.Description
                     };
                     break;
 
                 case AddOnTypeEnum.Target:
-                    businessAddOn = new TargetModifierDecorator(businessAddOn)
+                    IAddOn businessAddOn = new BasicAddOn()
                     {
-                        InstabilityModification = dataAddOn.InstabilityValue,
-                        TargetModification = dataAddOn.ModifierValue
+                        Id = dataAddOn.Id,
+                        Name = dataAddOn.Name,
+                        Description = dataAddOn.Description
                     };
                     break;
 
                 case AddOnTypeEnum.Duration:
-                    businessAddOn = new DurationModifierDecorator(businessAddOn)
+                    IAddOn businessAddOn = new BasicAddOn()
                     {
-                        InstabilityModification = dataAddOn.InstabilityValue,
-                        DurationModification = dataAddOn.ModifierValue
+                        Id = dataAddOn.Id,
+                        Name = dataAddOn.Name,
+                        Description = dataAddOn.Description
+                    };
+                    break;*/
+
+                default:
+                    businessAddOn = new BasicAddOn()
+                    {
+                        Id = dataAddOn.Id,
+                        Name = dataAddOn.Name,
+                        Description = dataAddOn.Description
                     };
                     break;
 
