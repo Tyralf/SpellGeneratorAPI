@@ -62,12 +62,14 @@ namespace SpellGenerator.Test.Converters
             var result = _addOnConverter.ConvertDataToBusiness(InstabilityAddOnTest);
 
             Assert.IsAssignableFrom<Business.Interfaces.IAddOn>(result);
-            Assert.IsType<Business.BusinessModels.AddOnDecorators.InstabilityModifierDecorator>(result);
+            var InstabilityResult = Assert.IsType<Business.BusinessModels.AddOnDecorators.InstabilityModifierDecorator>(result);
 
             // Vérifie les propriétés spécifiques
-            Assert.Equal(InstabilityAddOnTest.Id, result.Id);
-            Assert.Equal(InstabilityAddOnTest.Name, result.Name);
-            Assert.Equal(InstabilityAddOnTest.Description, result.Description);
+            Assert.Equal(InstabilityAddOnTest.Id, InstabilityResult.Id);
+            Assert.Equal(InstabilityAddOnTest.Name, InstabilityResult.Name);
+            Assert.Equal(InstabilityAddOnTest.Description, InstabilityResult.Description);
+            Assert.Equal(InstabilityAddOnTest.InstabilityValue, InstabilityResult.InstabilityModification);
+
 
 
         }
