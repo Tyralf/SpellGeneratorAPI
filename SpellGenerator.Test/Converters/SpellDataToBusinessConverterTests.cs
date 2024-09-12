@@ -92,7 +92,7 @@ namespace SpellGenerator.Test.Converters
         [Fact]
         public void TestConvertDataToBusiness_RangeAddOnConversion()
         {
-            dataSpell.AddOns.Add(new Data.DataModels.AddOn()
+            dataSpell.AddOns.Add(new AddOn()
             {
                 Id = -3,
                 Name = "AddOn de Modification de Range pour les tests",
@@ -111,7 +111,7 @@ namespace SpellGenerator.Test.Converters
         [Fact]
         public void TestConvertDataToBusiness_CastAddOnConversion()
         {
-            dataSpell.AddOns.Add(new Data.DataModels.AddOn()
+            dataSpell.AddOns.Add(new AddOn()
             {
                 Id = -4,
                 Name = "AddOn de Modification de temps de cast pour les tests",

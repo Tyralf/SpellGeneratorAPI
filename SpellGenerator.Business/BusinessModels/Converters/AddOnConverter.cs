@@ -45,32 +45,38 @@ namespace SpellGenerator.Business.BusinessModels.Converters
                     };
                     return rangeAddOn;
 
-                /*case AddOnTypeEnum.Cast:
-                    IAddOn businessAddOn = new BasicAddOn()
+                case AddOnTypeEnum.Cast:
+                    CastModifierAddOn castAddOn = new CastModifierAddOn()
                     {
                         Id = dataAddOn.Id,
                         Name = dataAddOn.Name,
-                        Description = dataAddOn.Description
+                        Description = dataAddOn.Description,
+                        InstabilityModificationValue = dataAddOn.InstabilityValue,
+                        CastModificationValue = dataAddOn.ModifierValue
                     };
-                    break;
+                    return castAddOn;
 
                 case AddOnTypeEnum.Target:
-                    IAddOn businessAddOn = new BasicAddOn()
+                    TargetModifierAddOn targetAddOn = new TargetModifierAddOn()
                     {
                         Id = dataAddOn.Id,
                         Name = dataAddOn.Name,
-                        Description = dataAddOn.Description
+                        Description = dataAddOn.Description,
+                        InstabilityModificationValue = dataAddOn.InstabilityValue,
+                        TargetModificationValue = dataAddOn.ModifierValue
                     };
-                    break;
+                    return targetAddOn;
 
                 case AddOnTypeEnum.Duration:
-                    IAddOn businessAddOn = new BasicAddOn()
+                    DurationModifierAddOn durationAddOn = new DurationModifierAddOn()
                     {
                         Id = dataAddOn.Id,
                         Name = dataAddOn.Name,
-                        Description = dataAddOn.Description
+                        Description = dataAddOn.Description,
+                        InstabilityModificationValue = dataAddOn.InstabilityValue,
+                        DurationModificationValue = dataAddOn.ModifierValue
                     };
-                    break;*/
+                    return durationAddOn;
 
                 default:
                     businessAddOn = new BasicAddOn()

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SpellGenerator.Business.BusinessModels.AddOns
 {
-    public class RangeModifierAddOn : InstabilityModifierAddOn
+    public class DurationModifierAddOn : InstabilityModifierAddOn
     {
-        public string RangeModificationValue { get; set; } = string.Empty;
+        public string DurationModificationValue { get; set; } = string.Empty;
 
         public override void Apply(Spell spell)
         {
-            spell.Range = RangeModificationValue;
+            spell.Duration = DurationModificationValue;
             spell.TotalInstability += this.InstabilityModificationValue;
         }
     }

@@ -1,4 +1,5 @@
-﻿using SpellGenerator.Business.BusinessModels.AddOns;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using SpellGenerator.Business.BusinessModels.AddOns;
 using SpellGenerator.Business.BusinessModels.Converters;
 using System;
 using System.Collections.Generic;
@@ -79,7 +80,8 @@ namespace SpellGenerator.Test.Converters
                 ModifierValue = "Nouvelle Portée"
             };
             var result = _addOnConverter.ConvertDataToBusiness(RangeAddOnTest);
-            Assert.IsType<RangeModifierAddOn>(result);
+
+            Assert.IsAssignableFrom<Business.Interfaces.IAddOn>(result);
             var RangeResult = Assert.IsType<RangeModifierAddOn>(result);
 
             // Vérifie les propriétés spécifiques
@@ -87,8 +89,9 @@ namespace SpellGenerator.Test.Converters
             Assert.Equal(RangeAddOnTest.Name, RangeResult.Name);
             Assert.Equal(RangeAddOnTest.Description, RangeResult.Description);
             Assert.Equal(RangeAddOnTest.InstabilityValue, RangeResult.InstabilityModificationValue);
+            Assert.Equal(RangeAddOnTest.ModifierValue, RangeResult.RangeModificationValue);
         }
-        /*
+        
         [Fact]
         public void TestConvertDataAddOnToBusinessAddOn_TargetAddOn()
         {
@@ -105,12 +108,14 @@ namespace SpellGenerator.Test.Converters
             var result = _addOnConverter.ConvertDataToBusiness(TargetAddOnTest);
 
             Assert.IsAssignableFrom<Business.Interfaces.IAddOn>(result);
-            Assert.IsType<Business.BusinessModels.AddOnDecorators.TargetModifierDecorator>(result);
+            var TargetResult = Assert.IsType<TargetModifierAddOn>(result);
 
             // Vérifie les propriétés spécifiques
-            Assert.Equal(TargetAddOnTest.Id, result.Id);
-            Assert.Equal(TargetAddOnTest.Name, result.Name);
-            Assert.Equal(TargetAddOnTest.Description, result.Description);
+            Assert.Equal(TargetAddOnTest.Id, TargetResult.Id);
+            Assert.Equal(TargetAddOnTest.Name, TargetResult.Name);
+            Assert.Equal(TargetAddOnTest.Description, TargetResult.Description);
+            Assert.Equal(TargetAddOnTest.InstabilityValue, TargetResult.InstabilityModificationValue);
+            Assert.Equal(TargetAddOnTest.ModifierValue, TargetResult.TargetModificationValue);
 
         }
 
@@ -129,12 +134,14 @@ namespace SpellGenerator.Test.Converters
             var result = _addOnConverter.ConvertDataToBusiness(CastAddOnTest);
 
             Assert.IsAssignableFrom<Business.Interfaces.IAddOn>(result);
-            Assert.IsType<Business.BusinessModels.AddOnDecorators.CastModifierDecorator>(result);
+            var CastResult = Assert.IsType<CastModifierAddOn>(result);
 
             // Vérifie les propriétés spécifiques
-            Assert.Equal(CastAddOnTest.Id, result.Id);
-            Assert.Equal(CastAddOnTest.Name, result.Name);
-            Assert.Equal(CastAddOnTest.Description, result.Description);
+            Assert.Equal(CastAddOnTest.Id, CastResult.Id);
+            Assert.Equal(CastAddOnTest.Name, CastResult.Name);
+            Assert.Equal(CastAddOnTest.Description, CastResult.Description);
+            Assert.Equal(CastAddOnTest.InstabilityValue, CastResult.InstabilityModificationValue);
+            Assert.Equal(CastAddOnTest.ModifierValue, CastResult.CastModificationValue);
 
         }
 
@@ -154,14 +161,16 @@ namespace SpellGenerator.Test.Converters
             var result = _addOnConverter.ConvertDataToBusiness(DurationAddOnTest);
 
             Assert.IsAssignableFrom<Business.Interfaces.IAddOn>(result);
-            Assert.IsType<Business.BusinessModels.AddOnDecorators.DurationModifierDecorator>(result);
+            var DurationResult = Assert.IsType<DurationModifierAddOn>(result);
 
             // Vérifie les propriétés spécifiques
-            Assert.Equal(DurationAddOnTest.Id, result.Id);
-            Assert.Equal(DurationAddOnTest.Name, result.Name);
-            Assert.Equal(DurationAddOnTest.Description, result.Description);
+            Assert.Equal(DurationAddOnTest.Id, DurationResult.Id);
+            Assert.Equal(DurationAddOnTest.Name, DurationResult.Name);
+            Assert.Equal(DurationAddOnTest.Description, DurationResult.Description);
+            Assert.Equal(DurationAddOnTest.InstabilityValue, DurationResult.InstabilityModificationValue);
+            Assert.Equal(DurationAddOnTest.ModifierValue, DurationResult.DurationModificationValue);
 
-        }*/
+        }
 
     }
 }
