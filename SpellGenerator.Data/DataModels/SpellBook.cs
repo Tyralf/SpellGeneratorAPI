@@ -8,5 +8,7 @@ namespace SpellGenerator.Data.DataModels
 {
     public class SpellBook
     {
+        public int Id { get; set; }
+        public List<Spell> StoredSpells { get; set; } = new List<Spell>();
     }
 }
