@@ -14,7 +14,70 @@ namespace SpellGenerator.Business.BusinessModels.Converters
     {
         public Data.DataModels.AddOn ConvertBusinessToData(IAddOn businessAddOn)
         {
-            throw new NotImplementedException();
+            Data.DataModels.AddOn dataAddOn = new Data.DataModels.AddOn();
+
+            switch (businessAddOn)
+            {
+
+                case RangeModifierAddOn rangeAddOn:
+                    dataAddOn.Id = rangeAddOn.Id;
+                    dataAddOn.Name = rangeAddOn.Name;
+                    dataAddOn.Description = rangeAddOn.Description;
+                    dataAddOn.Type = AddOnTypeEnum.Range;
+                    dataAddOn.InstabilityValue = rangeAddOn.InstabilityModificationValue;
+                    dataAddOn.ModifierValue = rangeAddOn.RangeModificationValue;
+
+                    break;
+
+                case TargetModifierAddOn targetAddOn:
+                    dataAddOn.Id = targetAddOn.Id;
+                    dataAddOn.Name = targetAddOn.Name;
+                    dataAddOn.Description = targetAddOn.Description;
+                    dataAddOn.Type = AddOnTypeEnum.Target;
+                    dataAddOn.InstabilityValue = targetAddOn.InstabilityModificationValue;
+                    dataAddOn.ModifierValue = targetAddOn.TargetModificationValue;
+
+                    break;
+
+                case CastModifierAddOn castAddOn:
+                    dataAddOn.Id = castAddOn.Id;
+                    dataAddOn.Name = castAddOn.Name;
+                    dataAddOn.Description = castAddOn.Description;
+                    dataAddOn.Type = AddOnTypeEnum.Cast;
+                    dataAddOn.InstabilityValue = castAddOn.InstabilityModificationValue;
+                    dataAddOn.ModifierValue = castAddOn.CastModificationValue;
+
+                    break;
+
+                case DurationModifierAddOn DurationAddOn:
+                    dataAddOn.Id = DurationAddOn.Id;
+                    dataAddOn.Name = DurationAddOn.Name;
+                    dataAddOn.Description = DurationAddOn.Description;
+                    dataAddOn.Type = AddOnTypeEnum.Duration;
+                    dataAddOn.InstabilityValue = DurationAddOn.InstabilityModificationValue;
+                    dataAddOn.ModifierValue = DurationAddOn.DurationModificationValue;
+
+                    break;
+
+                case InstabilityModifierAddOn instabilityAddOn:
+                    dataAddOn.Id = instabilityAddOn.Id;
+                    dataAddOn.Name = instabilityAddOn.Name;
+                    dataAddOn.Description = instabilityAddOn.Description;
+                    dataAddOn.Type = AddOnTypeEnum.InstabilityOnly;
+                    dataAddOn.InstabilityValue = instabilityAddOn.InstabilityModificationValue;
+
+                    break;
+
+                case BasicAddOn basicAddOn:
+                    dataAddOn.Id = basicAddOn.Id;
+                    dataAddOn.Name = basicAddOn.Name;
+                    dataAddOn.Description = basicAddOn.Description;
+                    dataAddOn.Type = AddOnTypeEnum.Base;
+
+                    break;
+            }
+
+            return dataAddOn;
         }
 
         public IAddOn ConvertDataToBusiness(Data.DataModels.AddOn dataAddOn)

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpellGenerator.Test.Converters
+namespace SpellGenerator.Test.Converters.DataToBusiness
 {
     public class AddOnDataToBuisnessConverterTests
     {
@@ -66,7 +66,7 @@ namespace SpellGenerator.Test.Converters
 
 
         }
-        
+
         [Fact]
         public void TestConvertDataAddOnToBusinessAddOn_RangeAddOn()
         {
@@ -91,7 +91,7 @@ namespace SpellGenerator.Test.Converters
             Assert.Equal(RangeAddOnTest.InstabilityValue, RangeResult.InstabilityModificationValue);
             Assert.Equal(RangeAddOnTest.ModifierValue, RangeResult.RangeModificationValue);
         }
-        
+
         [Fact]
         public void TestConvertDataAddOnToBusinessAddOn_TargetAddOn()
         {

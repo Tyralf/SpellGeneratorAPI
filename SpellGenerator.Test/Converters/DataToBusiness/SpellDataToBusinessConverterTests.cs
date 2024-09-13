@@ -7,7 +7,7 @@ using SpellGenerator.Data.DataModels;
 using System.Collections.Generic;
 using Xunit;
 
-namespace SpellGenerator.Test.Converters
+namespace SpellGenerator.Test.Converters.DataToBusiness
 {
     public class SpellDataToBusinessConverterTests
     {
@@ -18,7 +18,7 @@ namespace SpellGenerator.Test.Converters
             Id = 1,
             ManaCost = 50,
             Description = "A powerful fire spell.",
-            AddOns = new List<Data.DataModels.AddOn>() // Simuler des AddOns vides pour les test de base
+            AddOns = new List<AddOn>() // Simuler des AddOns vides pour les test de base
         };
 
         public SpellDataToBusinessConverterTests()
@@ -60,7 +60,7 @@ namespace SpellGenerator.Test.Converters
         [Fact]
         public void TestConvertDataToBusiness_BasicAddOnConversion()
         {
-            dataSpell.AddOns.Add(new Data.DataModels.AddOn()
+            dataSpell.AddOns.Add(new AddOn()
             {
                 Id = -1,
                 Name = "AddOn de Base pour les tests",
@@ -75,7 +75,7 @@ namespace SpellGenerator.Test.Converters
         [Fact]
         public void TestConvertDataToBusiness_InstabilityAddOnConversion()
         {
-            dataSpell.AddOns.Add(new Data.DataModels.AddOn()
+            dataSpell.AddOns.Add(new AddOn()
             {
                 Id = -2,
                 Name = "AddOn de modifiant l'instabilité pour les tests",
@@ -85,7 +85,7 @@ namespace SpellGenerator.Test.Converters
             });
             var result = _spellConverter.ConvertDataToBusiness(dataSpell);
 
-            Assert.True(result.AddOns.Count > 0, $"Erreur: L'AddOn n'a pas été ajouté au sort");            
+            Assert.True(result.AddOns.Count > 0, $"Erreur: L'AddOn n'a pas été ajouté au sort");
             Assert.True(result.TotalInstability == -2, $"Erreur: Le total d'instabilité n'a pas été correctement affecté par l'AddOn. Attendu : -2 | Actuel : {result.TotalInstability}");
         }
 
@@ -103,7 +103,7 @@ namespace SpellGenerator.Test.Converters
             });
             var result = _spellConverter.ConvertDataToBusiness(dataSpell);
 
-            Assert.True(result.AddOns.Count > 0, $"Erreur: L'AddOn n'a pas été ajouté au sort");            
+            Assert.True(result.AddOns.Count > 0, $"Erreur: L'AddOn n'a pas été ajouté au sort");
             Assert.True(result.TotalInstability == -3, $"Erreur: Le total d'instabilité n'a pas été correctement affecté par l'AddOn. Attendu : -3 | Actuel : {result.TotalInstability}");
             Assert.True(result.Range == dataSpell.AddOns.First().ModifierValue, $"Erreur: La valeur de modificateur n'a pas été correctement affecté a la range du sort. Attendu : {dataSpell.AddOns.First().ModifierValue} | Actuel : {result.Range}");
         }
@@ -130,7 +130,7 @@ namespace SpellGenerator.Test.Converters
         [Fact]
         public void TestConvertDataToBusiness_TargetAddOnConversion()
         {
-            dataSpell.AddOns.Add(new Data.DataModels.AddOn()
+            dataSpell.AddOns.Add(new AddOn()
             {
                 Id = -5,
                 Name = "AddOn de Modification de cibles pour les tests",
@@ -149,7 +149,7 @@ namespace SpellGenerator.Test.Converters
         [Fact]
         public void TestConvertDataToBusiness_DurationAddOnConversion()
         {
-            dataSpell.AddOns.Add(new Data.DataModels.AddOn()
+            dataSpell.AddOns.Add(new AddOn()
             {
                 Id = -6,
                 Name = "AddOn de Modification de durée pour les tests",
@@ -168,7 +168,7 @@ namespace SpellGenerator.Test.Converters
         [Fact]
         public void TestConvertDataToBusiness_MultipleAddOnConversion()
         {
-            dataSpell.AddOns.Add(new Data.DataModels.AddOn()
+            dataSpell.AddOns.Add(new AddOn()
             {
                 Id = -3,
                 Name = "AddOn de Modification de Range pour les tests",
@@ -178,7 +178,7 @@ namespace SpellGenerator.Test.Converters
                 Type = Data.DataModels.Enums.AddOnTypeEnum.Range
             });
 
-            dataSpell.AddOns.Add(new Data.DataModels.AddOn()
+            dataSpell.AddOns.Add(new AddOn()
             {
                 Id = -1,
                 Name = "AddOn de Base pour les tests",
@@ -186,7 +186,7 @@ namespace SpellGenerator.Test.Converters
                 Type = Data.DataModels.Enums.AddOnTypeEnum.Base
             });
 
-            dataSpell.AddOns.Add(new Data.DataModels.AddOn()
+            dataSpell.AddOns.Add(new AddOn()
             {
                 Id = -2,
                 Name = "AddOn de modifiant l'instabilité pour les tests",
@@ -243,6 +243,64 @@ namespace SpellGenerator.Test.Converters
             Assert.True(result.AddOns.Count == 3, $"Erreur: Le nombre d'AddOn ajouté au sort est incorrect. Attendu : Nombre d'AddOn sur le spell [3] | Actuel : Nombre d'AddOn sur le spell [{result.AddOns.Count}]");
             Assert.True(result.TotalInstability == SpellDefaults.DefaultTotalInstability, $"Erreur: L'instabilité totale attendue est {SpellDefaults.DefaultTotalInstability}, mais obtenue {result.TotalInstability}.");
             Assert.True(result.Range == SpellDefaults.DefaultRange, $"Erreur: La portée attendue est {SpellDefaults.DefaultRange}, mais obtenue {result.Range}.");
+        }
+
+        [Fact]
+        public void TestConvertDataToBusiness_Masteries()
+        {
+            Data.DataModels.Mastery parentMastery = new Data.DataModels.Mastery()
+            {
+                Id = -5,
+                Name = "Evocation"
+            };
+            Data.DataModels.Mastery invocationMastery = new Data.DataModels.Mastery()
+            {
+                Id = -6,
+                Name = "Invocation",
+                ParentMastery = parentMastery
+            };
+
+            dataSpell.RequieredMasteries.Add(new Data.DataModels.Mastery()
+            {
+                Id = -7,
+                Name = "Advanced Invocation",
+                ParentMastery = invocationMastery
+            });
+
+            dataSpell.RequieredMasteries.Add(new Data.DataModels.Mastery()
+            {
+                Id = -8,
+                Name = "Elivocation",
+                ParentMastery = parentMastery
+            });
+            var result = _spellConverter.ConvertDataToBusiness(dataSpell);
+
+            Assert.Equal(4, result.RequieredMasteries.Count);
+            Assert.Contains(result.RequieredMasteries, m => m.Id == -5 && m.Name == "Evocation");
+            Assert.Contains(result.RequieredMasteries, m => m.Id == -6 && m.Name == "Invocation");
+            Assert.Contains(result.RequieredMasteries, m => m.Id == -7 && m.Name == "Advanced Invocation");
+            Assert.Contains(result.RequieredMasteries, m => m.Id == -8 && m.Name == "Elivocation");
+        }
+
+        [Fact]
+        public void TestConvertDataToBusiness_Magics()
+        {
+            dataSpell.RequieredMagics.Add(new Data.DataModels.Magic()
+            {
+                Id = -1,
+                Name = "Magie Incendiaire"
+            });
+
+            dataSpell.RequieredMagics.Add(new Data.DataModels.Magic()
+            {
+                Id = -2,
+                Name = "Magie Aerienne"
+            });
+            var result = _spellConverter.ConvertDataToBusiness(dataSpell);
+
+            Assert.Equal(2, result.RequieredMagics.Count);
+            Assert.Contains(result.RequieredMagics, m => m.Id == -1 && m.Name == "Magie Incendiaire");
+            Assert.Contains(result.RequieredMagics, m => m.Id == -2 && m.Name == "Magie Aerienne");
         }
 
     }
