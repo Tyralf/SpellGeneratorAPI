@@ -2,10 +2,19 @@ using SpellGenerator.Business.BusinessModels.Converters;
 using SpellGenerator.Data.Repositories;
 using Newtonsoft.Json;
 using SpellGenerator.API.Middlewares.ErrorHandling;
+using SpellGenerator.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// Accéder à la chaîne de connexion dans appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// Ajouter le DbContext pour utiliser SQLite
+builder.Services.AddDbContext<MyDbContext>(options =>
+    options.UseSqlite(connectionString));
 
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>

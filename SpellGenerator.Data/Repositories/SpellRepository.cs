@@ -10,6 +10,16 @@ namespace SpellGenerator.Data.Repositories
 {
     public class SpellRepository
     {
+        MyDbContext _dbContext;
+        public SpellRepository(MyDbContext context)
+        {
+            _dbContext = context;
+        }
+
+        public List<Spell> GetAllSpells()
+        {
+            return _dbContext.Spells.ToList();
+        }
         public Spell FakeGetSpell()
         {
             Magic fakeFireMagic = new Magic()
