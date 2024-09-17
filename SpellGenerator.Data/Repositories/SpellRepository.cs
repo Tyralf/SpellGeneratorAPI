@@ -1,4 +1,5 @@
-﻿using SpellGenerator.Data.DataModels;
+﻿using Microsoft.EntityFrameworkCore;
+using SpellGenerator.Data.DataModels;
 using SpellGenerator.Data.DataModels.Enums;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,49 @@ namespace SpellGenerator.Data.Repositories
         {
             return _dbContext.Spells.ToList();
         }
-        public Spell FakeGetSpell()
+        public void CreateFakeAddOns()
+        {
+            AddOn FakeSimpleAddOn = new AddOn()
+            {
+                Name = "Simple",
+                Description = "This AddOn is a simple addOn To Test Developpement",
+                Type = AddOnTypeEnum.Base
+            };
+
+            AddOn FakeInstabilityModifierAddOn = new AddOn()
+            {
+                Name = "Instability Modifier",
+                Description = "This AddOn an addOn that modify Instability but nothing else, like a condition -Only possible to cast during the night- To Test Developpement",
+                Type = AddOnTypeEnum.InstabilityOnly,
+                InstabilityValue = -5
+            };
+
+            AddOn FakeRangeModifierAddOn = new AddOn()
+            {
+                Name = "Portée à 25m",
+                Description = "This AddOn an addOn that modify Instability and Range To Test Developpement",
+                Type = AddOnTypeEnum.Range,
+                InstabilityValue = -3,
+                ModifierValue = "Range is now 25m"
+            };
+
+            // Ajouter les objets AddOn dans la base de données
+            _dbContext.AddOns.Add(FakeSimpleAddOn);
+            _dbContext.AddOns.Add(FakeInstabilityModifierAddOn);
+            _dbContext.AddOns.Add(FakeRangeModifierAddOn);
+
+            // Sauvegarder les modifications dans la base de données
+            _dbContext.SaveChanges();
+
+
+        }
+
+        public void CreateFakeSpell()
+        {
+
+
+        }
+        /*public Spell FakeGetSpell()
         {
             Magic fakeFireMagic = new Magic()
             {
@@ -96,6 +139,6 @@ namespace SpellGenerator.Data.Repositories
             };
 
             return fakeSpell;
-        }
+        }*/
     }
 }

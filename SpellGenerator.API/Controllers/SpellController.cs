@@ -23,18 +23,18 @@ namespace SpellGeneratorAPI.Controllers
         }
 
         // Route: /Spell/GetSpellTest
-        [HttpGet("GetSpellTest")]
+        /*[HttpGet("GetSpellTest")]
         public IActionResult GetSpellTest()
         {
             var result = _spellConverter.ConvertDataToBusiness(_spellRepository.FakeGetSpell());
             return Ok(result);
-        }
+        }*/
 
         // Route: /Spell/GetZbaam
-        [HttpGet("GetZbaam")]
-        public string GetZbaam()
+        [HttpGet("CreateFakeAddOn")]
+        public void CreateFakeAddOns()
         {
-            return "Zbaam <3 on git now, branch dev";
+            _spellRepository.CreateFakeAddOns();
         }
 
         // Route: /Spell/AddNumbers (HTTP POST)

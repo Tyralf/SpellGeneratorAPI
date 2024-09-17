@@ -19,7 +19,7 @@ namespace SpellGenerator.Data.DataModels
         [Required]
         public AddOnTypeEnum Type { get; set; }
         public int InstabilityValue { get; set; }
-        public string ModifierValue { get; set; }
-        public List<Spell> Spells { get; set; }
+        public string? ModifierValue { get; set; }
+        public List<Spell>? Spells { get; set; }
     }
 }
