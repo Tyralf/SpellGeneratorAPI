@@ -10,10 +10,10 @@ API Spell est un système innovant destiné aux Maîtres de Jeu (MJs) et aux jou
 
 ## Objectifs
 
-- **Création de Sorts** : Créez des sorts pour le jeu de rôle **Atlantea** (création personnelle).
-- **Génération de Sorts** : Générez des sorts via un LLM (OpenAI, Mistral, etc.).
-- **Gestion des Comptes Utilisateurs** : Gérez les comptes et les sorts personnels. Offrez aux joueurs un accès à leur grimoire.
-- **Banque de Sorts** : Stockez et organisez les sorts créés.
+- **Création de Sorts** : Créez des sorts pour le jeu de rôle **Atlantea** (création personnelle). **(90% Done)**
+- **Génération de Sorts** : Générez des sorts via un LLM (OpenAI, Mistral, etc.). **(0% Done)**
+- **Gestion des Comptes Utilisateurs** : Gérez les comptes et les sorts personnels. Offrez aux joueurs un accès à leur grimoire. **(30% Done)**
+- ~~**Banque de Sorts** : Stockez et organisez les sorts créés.~~ **(100% Done)**
 
 ## Fonctionnalités
 
