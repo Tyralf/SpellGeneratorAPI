@@ -1,7 +1,8 @@
 # API Spell [Work In Progress]
 
 ### Pourcentage approximatif d'avancement du projet :
-![2024-09-11_10h36_54](https://github.com/user-attachments/assets/f3f28e98-480c-4986-b2a8-a5e12fe23ad6)
+![2024-09-17_16h14_30](https://github.com/user-attachments/assets/43b79801-ba85-45bc-9829-b9f4943b73dd)
+
 
 ## Résumé du Projet
 
