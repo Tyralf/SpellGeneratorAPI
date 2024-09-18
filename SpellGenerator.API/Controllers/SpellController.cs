@@ -63,5 +63,11 @@ namespace SpellGeneratorAPI.Controllers
             // Génère une exception volontairement pour tester le middleware
             throw new KeyNotFoundException();
         }
+
+        [HttpPost("CreateAddOn")]
+        public void CreateAddOn([FromBody] AddOnCreationRequest request)
+        {
+            _spellRepository.CreateFakeAddOns();
+        }
     }
 }
