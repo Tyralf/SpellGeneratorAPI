@@ -22,14 +22,6 @@ namespace SpellGeneratorAPI.Controllers
             _spellConverter = spellConverter;
         }
 
-        // Route: /Spell/GetSpellTest
-        /*[HttpGet("GetSpellTest")]
-        public IActionResult GetSpellTest()
-        {
-            var result = _spellConverter.ConvertDataToBusiness(_spellRepository.FakeGetSpell());
-            return Ok(result);
-        }*/
-
         // Route: /Spell/GetZbaam
         [HttpGet("CreateFakeAddOn")]
         public void CreateFakeAddOns()
@@ -37,18 +29,6 @@ namespace SpellGeneratorAPI.Controllers
             _spellRepository.CreateFakeAddOns();
         }
 
-        // Route: /Spell/AddNumbers (HTTP POST)
-        [HttpPost("AddNumbers")]
-        public IActionResult AddNumbers([FromBody] AdditionRequest request)
-        {
-            if (request == null || request.Number1 == 0 || request.Number2 == 0)
-            {
-                return BadRequest("Les nombres ne doivent pas être null ou zéro.");
-            }
-
-            var result = request.Number1 + request.Number2;
-            return Ok(new { Sum = result });
-        }
 
         [HttpGet("Error500")]
         public IActionResult GenerateError500()
@@ -62,12 +42,6 @@ namespace SpellGeneratorAPI.Controllers
         {
             // Génère une exception volontairement pour tester le middleware
             throw new KeyNotFoundException();
-        }
-
-        [HttpPost("CreateAddOn")]
-        public void CreateAddOn([FromBody] AddOnCreationRequest request)
-        {
-            _spellRepository.CreateFakeAddOns();
         }
     }
 }

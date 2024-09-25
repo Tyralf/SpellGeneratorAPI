@@ -21,6 +21,76 @@ namespace SpellGenerator.Data.Repositories
         {
             return _dbContext.Spells.ToList();
         }
+
+        public void AddSpell(Spell spellInfo)
+        {
+            // Ajout du sort dans le contexte
+            _dbContext.Spells.Add(spellInfo);
+
+            // Sauvegarde les changements dans la base de données
+            _dbContext.SaveChanges();
+        }
+
+        public Spell ModifySpell(Spell modifiedInfo, int id)
+        {
+            // Trouve le sort correspondant à l'ID donné
+            var spell = _dbContext.Spells.FirstOrDefault(s => s.Id == id);
+
+            if (spell == null)
+            {
+                throw new KeyNotFoundException("Le Sort n'a pas été trouvé dans la base de donnée");
+            }
+
+            // Mise à jour des propriétés du sort
+            spell.Name = modifiedInfo.Name;
+            spell.ManaCost = modifiedInfo.ManaCost;
+            spell.Description = modifiedInfo.Description;
+            spell.RequieredMagics = modifiedInfo.RequieredMagics;
+            spell.RequieredMasteries = modifiedInfo.RequieredMasteries;
+            spell.AddOns = modifiedInfo.AddOns;
+
+            // Sauvegarde les modifications dans la base de données
+            _dbContext.SaveChanges();
+
+            return spell;
+        }
+
+        public void DeleteSpell(int id)
+        {
+            var spell = _dbContext.Spells.FirstOrDefault(s => s.Id == id);
+
+            if (spell == null)
+            {
+                throw new KeyNotFoundException("Le Sort n'a pas été trouvé dans la base de donnée");
+            }
+
+            // Supprime le sort du contexte
+            _dbContext.Spells.Remove(spell);
+
+            // Sauvegarde les changements dans la base de données
+            _dbContext.SaveChanges();
+        }
+
+        public List<Spell> GetAllSpellsFromSpellBook(int userId, int spellBookId)
+        {
+            var spellBook = _dbContext.SpellBooks
+                            .FirstOrDefault(sb => sb.Id == spellBookId && sb.User.Id == userId);
+
+            if (spellBook == null)
+            {
+                throw new KeyNotFoundException(" Le SpellBook de cet utilisateur n'a pas été trouvé dans la base de donnée");
+            }
+
+            // Récupère tous les sorts du SpellBook
+            var spells = _dbContext.Spells
+                .Where(s => s.SpellBooks.Contains(spellBook))
+                .ToList();
+
+            return spells;
+        }
+
+
+
         public void CreateFakeAddOns()
         {
             AddOn FakeSimpleAddOn = new AddOn()

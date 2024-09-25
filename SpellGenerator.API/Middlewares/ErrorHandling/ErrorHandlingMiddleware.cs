@@ -21,7 +21,8 @@ namespace SpellGenerator.API.Middlewares.ErrorHandling
             {
                 { typeof(Exception), new InternalServerErrorStrategy() },
                 { typeof(KeyNotFoundException), new NotFoundErrorStrategy() },
-                { typeof(NullReferenceException), new InternalServerErrorStrategy() }
+                { typeof(NullReferenceException), new InternalServerErrorStrategy() },
+                { typeof(InvalidOperationException), new InternalServerErrorStrategy() }
             };
         }
 
