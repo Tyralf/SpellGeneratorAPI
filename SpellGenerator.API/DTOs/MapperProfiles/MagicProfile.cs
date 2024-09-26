@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using SpellGenerator.API.Requests;
 using SpellGenerator.Business.BusinessModels;
 
 namespace SpellGenerator.API.DTOs.MapperProfiles
@@ -8,11 +7,11 @@ namespace SpellGenerator.API.DTOs.MapperProfiles
     {
         public MagicProfile()
         {
-            // Mapping pour créer une magie (sans Id)
+            /*/ Mapping pour créer une magie (sans Id)
             CreateMap<MagicCreationDTO, Magic>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 
-            CreateMap<Magic, MagicModificationDTO>();
+            CreateMap<Magic, MagicModificationDTO>();*/
         }
     }
 }

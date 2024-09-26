@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SpellGenerator.API.Requests;
 using SpellGenerator.Business.BusinessModels;
 using SpellGenerator.Business.BusinessModels.Converters;
 using SpellGenerator.Business.BusinessModels.Converters.Interfaces;

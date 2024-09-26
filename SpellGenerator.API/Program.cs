@@ -26,11 +26,9 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddScoped<SpellRepository>();
-builder.Services.AddScoped<MagicRepository>();
 
 builder.Services.AddScoped<SpellConverter>();
 builder.Services.AddScoped<MagicConverter>();
-builder.Services.AddAutoMapper(typeof(MagicProfile));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

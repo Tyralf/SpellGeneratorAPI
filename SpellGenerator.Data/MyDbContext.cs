@@ -113,6 +113,34 @@ namespace SpellGenerator.Data
                         .WithMany()
                         .HasForeignKey("UserId"));
 
+            // Seed data for Masteries
+        modelBuilder.Entity<Mastery>().HasData(
+            new Mastery { Id = 1, Name = "Evocation" },
+            new Mastery { Id = 2, Name = "Infusion" },
+            new Mastery { Id = 3, Name = "Renforcement" },
+            new Mastery { Id = 4, Name = "Psychique" },
+            new Mastery { Id = 5, Name = "Invocation", ParentMasteryId = 1 },
+            new Mastery { Id = 6, Name = "Transformation", ParentMasteryId = 2 },
+            new Mastery { Id = 7, Name = "Transmogrification", ParentMasteryId = 3 },
+            new Mastery { Id = 8, Name = "Illusion", ParentMasteryId = 4 },
+            new Mastery { Id = 9, Name = "Conjuration", ParentMasteryId = 5 },
+            new Mastery { Id = 10, Name = "Techno-Magie", ParentMasteryId = 6 },
+            new Mastery { Id = 11, Name = "Corporalki", ParentMasteryId = 7 },
+            new Mastery { Id = 12, Name = "Projection", ParentMasteryId = 8 }
+        );
+
+        // Seed data for Magics
+        modelBuilder.Entity<Magic>().HasData(
+            new Magic { Id = 1, Name = "Incendiaire" },
+            new Magic { Id = 2, Name = "Terrestre" },
+            new Magic { Id = 3, Name = "Aérienne" },
+            new Magic { Id = 4, Name = "Aquatique" },
+            new Magic { Id = 5, Name = "Lumineuse" },
+            new Magic { Id = 6, Name = "Lunaire" },
+            new Magic { Id = 7, Name = "Ténébreuse" },
+            new Magic { Id = 8, Name = "Chaotique" }
+        );
+
         }
 
     }

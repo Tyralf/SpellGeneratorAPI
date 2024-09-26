@@ -13,7 +13,8 @@ namespace SpellGenerator.Data.DataModels
         public int Id { get; set; }
         [Required]
         public string Name { get; set; } = string.Empty;
-        public Mastery ParentMastery { get; set; }
+        public int? ParentMasteryId { get; set; } 
+        public Mastery? ParentMastery { get; set; }
 
         public List<Spell> Spells { get; set; } = new List<Spell>();
         public List<User> Users { get; set; } = new List<User>();
