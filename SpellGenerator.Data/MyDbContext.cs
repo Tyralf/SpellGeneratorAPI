@@ -19,7 +19,6 @@ namespace SpellGenerator.Data
         public DbSet<AddOn> AddOns { get; set; }
         public DbSet<Mastery> Masteries { get; set; }
         public DbSet<Magic> Magics { get; set; }
-        //public DbSet<User> Users { get; set; }
         public DbSet<SpellBook> SpellBooks { get; set; }
         public DbSet<User> Users { get; set; }
 

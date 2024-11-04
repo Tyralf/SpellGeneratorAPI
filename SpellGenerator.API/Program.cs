@@ -5,6 +5,7 @@ using SpellGenerator.API.Middlewares.ErrorHandling;
 using SpellGenerator.Data;
 using Microsoft.EntityFrameworkCore;
 using SpellGenerator.API.DTOs.MapperProfiles;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,9 @@ builder.Services.AddScoped<SpellRepository>();
 
 builder.Services.AddScoped<SpellConverter>();
 builder.Services.AddScoped<MagicConverter>();
+
+builder.Services.AddAutoMapper(typeof(AddOnProfile));
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

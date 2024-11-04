@@ -15,6 +15,11 @@ namespace SpellGenerator.Data.Repositories
             return _dbContext.Users.ToList();
         }
 
+        public List<User> GetAllUsers()
+        {
+            return _dbContext.Users.ToList();
+        }
+
         public void AddUser(User UserInfo)
         {
             SpellBook userSpellBook = new SpellBook()
