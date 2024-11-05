@@ -3,6 +3,10 @@
 ### Pourcentage approximatif d'avancement du projet :
 ![2024-09-17_16h14_30](https://github.com/user-attachments/assets/43b79801-ba85-45bc-9829-b9f4943b73dd)
 
+![Build Status](https://img.shields.io/github/actions/workflow/status/Tyralf/SpellGeneratorAPI/build.yml?branch=main)
+![.NET Version](https://img.shields.io/badge/.NET-6.0-blue)
+![License](https://img.shields.io/github/license/Tyralf/SpellGeneratorAPI)
+![Coverage](https://img.shields.io/codecov/c/github/Tyralf/SpellGeneratorAPI)
 
 ## Résumé du Projet
 
